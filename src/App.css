@@ -107,6 +107,7 @@ ul{
   background-color: var(--custom-color);
   color: #FFF;
   cursor: pointer;
+  text-align: center;
 }
 
 .filter-btns{
@@ -303,8 +304,6 @@ ul{
 
   .btn-add{
     height: 40px;
-    font-size: 16px;
-    text-align: center;
   }
 
   .todolist{

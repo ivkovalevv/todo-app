@@ -33,7 +33,11 @@ export function TodoList(props: PropsType) {
     props.changeFilter('completed', props.id)
   }
   const onDeleteHandler = () => {
-    props.removeTodolist(props.id)
+    if(window.confirm('You are deleting todolist. Are you sure?')){
+      props.removeTodolist(props.id)
+    } else {
+      return
+    }
   }
 
   const addTask = (title: string) => {
