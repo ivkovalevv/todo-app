@@ -304,6 +304,7 @@ ul{
   .btn-add{
     height: 40px;
     font-size: 16px;
+    text-align: center;
   }
 
   .todolist{
