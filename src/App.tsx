@@ -208,6 +208,7 @@ function App() {
 
             return <TodoList
             key={todolist.id}
+            array={tasksObj[todolist.id]}
             id={todolist.id} 
             title={todolist.title}
             description={todolist.description} 

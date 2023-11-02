@@ -12,6 +12,7 @@ export type TaskType = {
 }
 
 export type PropsType = {
+  array: Array<TaskType>,
   id: string,
   title: string,
   description: string,
@@ -42,7 +43,6 @@ export function TodoList(props: PropsType) {
       return
     }
   }
-
   const addTask = (title: string) => {
     props.addTask(title, props.id)
   }
@@ -54,14 +54,16 @@ export function TodoList(props: PropsType) {
       <h3 className={'todolist-heading'}>{props.title}</h3>
       <p className={'todolist-description'}>{props.description}</p>
       <AddItemForm addItem={addTask}></AddItemForm>
-      <div className={'filter-btns'}>
+      {(props.array.length <= 1) 
+      ? <div></div> 
+      : <div className={'filter-btns'}>
         <button className={props.filter === 'all' ? 'active-filter filter-btn' : 'filter-btn'} onClick={onAllClickFilter}>All</button>
         <button className={props.filter === 'active' ? 'active-filter filter-btn' : 'filter-btn'} onClick={onActiveClickFilter}>Active</button>
         <button className={props.filter === 'completed' ? 'active-filter filter-btn' : 'filter-btn'} onClick={onAllCompletedFilter}>Completed</button>
-      </div>
+      </div>}
       <ul className={'list'}>
-        {
-          props.tasks.map(task => {
+          {
+            props.tasks.map(task => {
             const onCheckboxChangeHandler = () => {
               props.changeCompleted(task.id, props.id)
             }
