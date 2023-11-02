@@ -1,6 +1,8 @@
 import React from 'react';
 import {FilterValuesType} from './App'
 import { AddItemForm } from './AddItemForm';
+import { EditableSpanPropsType } from './EditableSpan';
+import { EditableSpan } from './EditableSpan';
 
 export type TaskType = {
     userId: number,
@@ -19,6 +21,7 @@ export type PropsType = {
   removeTask: (id: string, todolistId: string) => void,
   changeFilter: (value: FilterValuesType, todolistId: string) => void,
   addTask: (taskTitle: string, todolistId: string) => void,
+  changeTaskTitle: (id: string, title: string, todolistId: string) => void,
   filter: FilterValuesType
 }
 
@@ -67,6 +70,10 @@ export function TodoList(props: PropsType) {
               props.removeTask(task.id, props.id)
             }
 
+            const onChangeTitleHandler = (newValue: string) => {
+              props.changeTaskTitle(task.id, newValue, props.id)
+            }
+
             return <li className={task.completed === true ? 'completed item' : 'item'} key={task.id}>
             <input type='checkbox' 
               checked={task.completed}
@@ -75,7 +82,7 @@ export function TodoList(props: PropsType) {
               id={task.id.toString()}>
             </input>
             <label htmlFor={task.id.toString()}></label>
-            <span className={'item-title'}>{task.title}</span>
+            <EditableSpan title={task.title} onChange={onChangeTitleHandler}></EditableSpan>
             <button className={'delete-btn'} onClick={onRemoveHandler}></button>
           </li>
           }

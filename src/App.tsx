@@ -22,11 +22,21 @@ function App() {
   }
 
   let todolistId1 = getRandomID()
-  let todolistId2 = getRandomID()
+  let todolistId2 = getRandomID() 
+
+  function getTodayDate(){
+    let todayDate = ''
+    let date = new Date()
+    todayDate = date.getDate().toString() + '.' + (date.getUTCMonth() + 1).toString() + '.' + date.getFullYear()
+    return todayDate
+  }
+
+  let todolistDate1 = getTodayDate();
+  let todolistDate2 = '25.10.2023';
 
   let [todolists, setTodolists] = useState<Array<TodoListType>>([
-    {id: todolistId1, title: 'Wednsday, 1', description: 'November', filter: 'all'},
-    {id: todolistId2, title: 'Thursday, 2', description: 'November', filter: 'all'},
+    {id: todolistId1, title: 'Study day', description: todolistDate1, filter: 'all'},
+    {id: todolistId2, title: 'Day off', description: todolistDate2, filter: 'all'},
   ])
   
   let [tasksObj, setTasks] = useState({
@@ -54,6 +64,28 @@ function App() {
           setTasks({...tasksObj})
       })
   }, []) */
+ 
+  function filterDateTodolists(value: string){
+    if (value === 'up'){
+      let sortedTodolists = todolists.sort(UpSortFunction);
+      setTodolists(sortedTodolists)
+    } else if (value === 'down'){
+      let sortedTodolists = todolists.sort(DownSortFunction);
+      setTodolists(sortedTodolists)
+    }
+  }
+  
+  function UpSortFunction(a: any, b: any) {
+      let dateA = new Date(a.date).getTime();
+      let dateB = new Date(b.date).getTime();
+      return dateA > dateB ? 1 : -1;
+  };
+
+  function DownSortFunction(a: any, b: any) {
+    let dateA = new Date(a.date).getTime();
+    let dateB = new Date(b.date).getTime();
+    return dateA < dateB ? 1 : -1;
+  };
 
   function removeTodolist(todolistId: string){
     let newTodolists = todolists.filter(td => td.id !== todolistId)
@@ -109,11 +141,46 @@ function App() {
     let todolist: TodoListType = {
       id: getRandomID(),
       title: title,
-      description: 'November',
+      description: getTodayDate(),
       filter: 'all'
     }
     setTasks({...tasksObj, [todolist.id]: []})
     setTodolists([todolist, ...todolists])
+  }
+
+  function changeTaskTitle(id: string, newTitle: string, todolistId: string){
+    let todolistTasks = tasksObj[todolistId]
+    let task = todolistTasks.find(t => t.id === id)
+    if(task){
+      if(newTitle.trim() !== ''){
+        task.title = newTitle
+        setTasks({...tasksObj})
+      }
+    }
+  }
+
+  let [filterState, setFilterState] = useState([
+    'active-filter filter-btn up-filter-btn-active', 'filter-btn down-filter-btn'
+  ])
+
+  let [disabledState, setDisabledState] = useState([
+    true, false
+  ])
+
+  const onUpFilterHandler = () => {
+    filterDateTodolists('up')
+    let newFilterState = ['active-filter filter-btn up-filter-btn-active', 'filter-btn down-filter-btn']
+    let newDisabledState = [true, false]
+    setFilterState(newFilterState)
+    setDisabledState(newDisabledState)
+  }
+
+  const onDownFilterHandler = () =>{
+    filterDateTodolists('down')
+    let newFilterState = ['filter-btn up-filter-btn', 'active-filter  filter-btn down-filter-btn-active']
+    let newDisabledState = [false, true]
+    setFilterState(newFilterState)
+    setDisabledState(newDisabledState)
   }
 
   return (
@@ -123,33 +190,38 @@ function App() {
         <h3 className={'todolist-heading todolist-form-heading'}>Add new todolist</h3>
       <AddItemForm addItem={(title: string) => {addTodolist(title)}}></AddItemForm>
       </div>
+      <div className={'filter-todo-btns'}>
+          <button disabled={disabledState[0]} className={filterState[0]} onClick={onUpFilterHandler}></button>
+          <button disabled={disabledState[1]} className={filterState[1]} onClick={onDownFilterHandler}></button>
+        </div>
       <div className={'todolists'}>
-      {
-        todolists.map((todolist) => {
-          let tasksForTodoList = tasksObj[todolist.id]
+        {
+          todolists.map((todolist) => {
+            let tasksForTodoList = tasksObj[todolist.id]
 
-          if (todolist.filter === "completed"){
-            tasksForTodoList = tasksForTodoList.filter(task => task.completed === true)
-          }
-          if (todolist.filter === "active"){
-            tasksForTodoList = tasksForTodoList.filter(task => task.completed === false)
-          }
+            if (todolist.filter === "completed"){
+              tasksForTodoList = tasksForTodoList.filter(task => task.completed === true)
+            }
+            if (todolist.filter === "active"){
+              tasksForTodoList = tasksForTodoList.filter(task => task.completed === false)
+            }
 
-          return <TodoList
-          key={todolist.id}
-          id={todolist.id} 
-          title={todolist.title}
-          description={todolist.description} 
-          tasks={tasksForTodoList}
-          removeTodolist={removeTodolist} 
-          removeTask={removeTask} 
-          changeFilter={changeFilter}
-          addTask={addTask}
-          changeCompleted={changeCompleted}
-          filter={todolist.filter}></TodoList>
-        })
-      }
-      </div>
+            return <TodoList
+            key={todolist.id}
+            id={todolist.id} 
+            title={todolist.title}
+            description={todolist.description} 
+            tasks={tasksForTodoList}
+            removeTodolist={removeTodolist} 
+            removeTask={removeTask} 
+            changeFilter={changeFilter}
+            addTask={addTask}
+            changeCompleted={changeCompleted} 
+            changeTaskTitle={changeTaskTitle}
+            filter={todolist.filter}></TodoList>
+          })
+        }
+        </div>
       <div className={'footer'}>Create by <a href={'https://github.com/ivkovalevv'} className={'link'}>Ivkovalevv</a> © 2023
       <a href={'https://github.com/ivkovalevv'} target='_blank' className={'gh-icon'}></a></div>
     </div>

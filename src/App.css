@@ -23,6 +23,24 @@ ul{
   align-items: center;
 }
 
+.filter-todo-btns{
+  margin-bottom: 20px;
+}
+
+.up-filter-btn, .down-filter-btn, .up-filter-btn-active, .down-filter-btn-active{
+  width: 27px;
+  height: 27px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.up-filter-btn{background-image: url(../img/svg/up-sort.svg);}
+.down-filter-btn{background-image: url(../img/svg/down-sort.svg);}
+
+.up-filter-btn-active{background-image: url(../img/svg/up-sort-active.svg);}
+.down-filter-btn-active{background-image: url(../img/svg/down-sort-active.svg);}
+
 .todolists{
   width: 100%;
   display: flex;
@@ -251,6 +269,48 @@ ul{
   background-size: contain;
   margin-left: auto;
   margin-bottom: 0px;
+}
+
+.input-edit{
+  border-radius: 10px;
+  padding: 3px;
+  border: none;
+  outline: 2px solid var(--custom-color);
+}
+
+.input-edit:active, .input-edit:hover{
+  outline: 2px solid var(--custom-color);
+  border: none;
+}
+
+.editaple-title-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: auto;
+  border-right: 1px solid #cacaca;
+}
+
+.editable-btn{
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+.editable-btn-edit{
+  background-image: url(../img/svg/edit.svg);
+}
+
+.editable-btn-check{
+  background-image: url(../img/svg/checkmark.svg);
+  background-size: 140%;
 }
 
 .footer{
