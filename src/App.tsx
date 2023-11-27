@@ -25,13 +25,12 @@ function App() {
   let todolistId2 = getRandomID() 
 
   function getTodayDate(){
-    let todayDate = ''
     let date = new Date()
-    todayDate = date.getDate().toString() + '.' + (date.getUTCMonth() + 1).toString() + '.' + date.getFullYear()
+    let todayDate = date.getDate().toString() + '.' + (date.getUTCMonth() + 1).toString() + '.' + date.getFullYear()
     return todayDate
   }
 
-  let todolistDate1 = getTodayDate();
+  let todolistDate1 = '11.11.2023';
   let todolistDate2 = '25.10.2023';
 
   let [todolists, setTodolists] = useState<Array<TodoListType>>([
@@ -75,15 +74,15 @@ function App() {
     }
   }
   
-  function UpSortFunction(a: any, b: any) {
-      let dateA = new Date(a.date).getTime();
-      let dateB = new Date(b.date).getTime();
+  function UpSortFunction(a: TodoListType, b: TodoListType) {
+      let dateA = new Date(a.description).getTime();
+      let dateB = new Date(b.description).getTime();
       return dateA > dateB ? 1 : -1;
   };
 
-  function DownSortFunction(a: any, b: any) {
-    let dateA = new Date(a.date).getTime();
-    let dateB = new Date(b.date).getTime();
+  function DownSortFunction(a: TodoListType, b: TodoListType) {
+    let dateA = new Date(a.description).getTime();
+    let dateB = new Date(b.description).getTime();
     return dateA < dateB ? 1 : -1;
   };
 
