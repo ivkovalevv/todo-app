@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# 🚀 Modern Todo List Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Live Demo](https://img.shields.io/badge/-LIVE_DEMO-00C853?style=for-the-badge&logo=vercel&logoColor=white)](https://ivkovalevv.github.io/todo-app/)
+[![GitHub Repo](https://img.shields.io/badge/-SOURCE_CODE-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ivkovalevv/todo-app)
+[![License](https://img.shields.io/badge/-MIT_License-8A2BE2?style=for-the-badge)](LICENSE)
 
-## Available Scripts
+A lightweight yet powerful task management solution built with React and TypeScript.
 
-In the project directory, you can run:
+## ✨ Key Features
 
-### `npm start`
+✅ **CRUD Operations** - Create, Read, Update, and Delete tasks effortlessly  
+✅ **Smart Filtering** - View All/Active/Completed tasks with one click  
+✅ **Persistent Storage** - Data saved automatically via localStorage  
+✅ **Responsive Design** - Works flawlessly on mobile/tablet/desktop  
+✅ **Interactive UI** - Smooth animations and intuitive controls  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠 Tech Stack
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Core Technologies
+![React](https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![CSS Modules](https://img.shields.io/badge/-CSS_Modules-000000?style=for-the-badge&logo=css3&logoColor=white)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
